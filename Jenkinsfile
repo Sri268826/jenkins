@@ -3,21 +3,29 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
+        stage('Setup Python Environment') {
             steps {
-                sh 'pip3 install -r requirements.txt'
+                sh '''
+                python3 -m venv venv
+                . venv/bin/activate
+                pip install --upgrade pip
+                pip install -r requirements.txt
+                '''
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'python3 -m unittest test_app.py'
+                sh '''
+                . venv/bin/activate
+                python -m unittest test_app.py
+                '''
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deployment successful!"
+                echo "Application deployed successfully"
             }
         }
     }
