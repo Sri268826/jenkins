@@ -5,7 +5,7 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/your-username/reverse-string-ci.git'
+                git 'https://github.com/Sri268826/jenkins.git'
             }
         }
 
